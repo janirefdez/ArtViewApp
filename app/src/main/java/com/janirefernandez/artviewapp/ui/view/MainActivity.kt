@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.janirefernandez.artviewapp.R
 import com.janirefernandez.artviewapp.data.model.Record
 import com.janirefernandez.artviewapp.databinding.ActivityMainBinding
 import com.janirefernandez.artviewapp.ui.adapter.RecordAdapter
@@ -16,10 +15,10 @@ import com.janirefernandez.artviewapp.ui.viewmodel.ArtViewModel
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-
     private lateinit var recordAdapter: RecordAdapter
 
     private val artViewModel: ArtViewModel by viewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,11 +42,12 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 if (!recyclerView.canScrollVertically(1) && dy > 0) {
-                    artViewModel.onCreate()
+                    if (recordAdapter.itemCount < MAX_ITEMS) {
+                        artViewModel.onCreate()
+                    }
                 }
             }
         })
-
     }
 
     private fun updateData(recordList: List<Record>) {
@@ -58,4 +58,7 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this, record.url, Toast.LENGTH_SHORT).show()
     }
 
+    companion object {
+        private const val MAX_ITEMS = 100
+    }
 }
