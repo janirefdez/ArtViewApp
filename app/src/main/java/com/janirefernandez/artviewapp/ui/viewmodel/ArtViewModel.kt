@@ -10,14 +10,17 @@ import kotlinx.coroutines.launch
 class ArtViewModel : ViewModel() {
 
     val artModelList = MutableLiveData<MutableList<Record>>()
+    val isLoading = MutableLiveData<Boolean>()
 
     var getObjectUseCase = GetMuseumObjectsUseCase()
 
     fun onCreate() {
         viewModelScope.launch {
+            isLoading.postValue(true)
             val result = getObjectUseCase()
             if (!result.isNullOrEmpty()) {
                 artModelList.postValue(result.toMutableList())
+                isLoading.postValue(false)
             }
         }
     }
