@@ -17,12 +17,7 @@ class ArtViewModel : ViewModel() {
         viewModelScope.launch {
             val result = getObjectUseCase()
             if (!result.isNullOrEmpty()) {
-                if(!artModelList.value.isNullOrEmpty()){
-                    artModelList.value!!.addAll(result)
-                    artModelList.postValue(artModelList.value)
-                } else {
-                    artModelList.postValue(result.toMutableList())
-                }
+                artModelList.postValue(result.toMutableList())
             }
         }
     }
