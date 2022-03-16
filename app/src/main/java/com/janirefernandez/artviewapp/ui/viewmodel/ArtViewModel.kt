@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class ArtViewModel : ViewModel() {
 
-    val artModelList = MutableLiveData<List<Record>>()
+    val artModelList = MutableLiveData<MutableList<Record>>()
 
     var getObjectUseCase = GetMuseumObjectsUseCase()
 
@@ -17,7 +17,12 @@ class ArtViewModel : ViewModel() {
         viewModelScope.launch {
             val result = getObjectUseCase()
             if (!result.isNullOrEmpty()) {
-                artModelList.postValue(result)
+                if(!artModelList.value.isNullOrEmpty()){
+                    artModelList.value!!.addAll(result)
+                    artModelList.postValue(artModelList.value)
+                } else {
+                    artModelList.postValue(result.toMutableList())
+                }
             }
         }
     }
