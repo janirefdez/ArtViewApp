@@ -1,13 +1,13 @@
 package com.janirefernandez.artviewapp.ui.view
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.janirefernandez.artviewapp.R
 import com.janirefernandez.artviewapp.data.model.Record
 import com.janirefernandez.artviewapp.databinding.ActivityMainBinding
 import com.janirefernandez.artviewapp.ui.adapter.RecordAdapter
@@ -60,7 +60,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onItemSelected(record: Record) {
-        Toast.makeText(this, record.url, Toast.LENGTH_SHORT).show()
+
+        val mFragment = RecordFragment()
+        val mBundle = Bundle()
+        mBundle.putString("url", record.url)
+        mFragment.arguments = mBundle
+
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.content_frame, mFragment, "RECORD_FRAGMENT")
+            .addToBackStack("back")
+            .commit()
     }
 
     companion object {
