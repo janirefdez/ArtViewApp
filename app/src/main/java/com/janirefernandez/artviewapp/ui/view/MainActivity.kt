@@ -12,7 +12,9 @@ import com.janirefernandez.artviewapp.data.model.Record
 import com.janirefernandez.artviewapp.databinding.ActivityMainBinding
 import com.janirefernandez.artviewapp.ui.adapter.RecordAdapter
 import com.janirefernandez.artviewapp.ui.viewmodel.ArtViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
