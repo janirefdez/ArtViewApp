@@ -1,8 +1,7 @@
-package com.janirefernandez.artviewapp.core
+package com.janirefernandez.artviewapp.di
 
 class Constants {
-
-    companion object{
+    companion object {
         const val baseUrl = "https://api.harvardartmuseums.org/"
         const val apiKey = "113ca573-36d3-4d69-a769-fd949b7022e5"
     }

@@ -1,8 +1,9 @@
 package com.janirefernandez.artviewapp.data.model
 
-class MuseumObjectProvider {
+import javax.inject.Inject
+import javax.inject.Singleton
 
-    companion object {
-        var museumObjectList: List<Record> = emptyList()
-    }
+@Singleton
+class MuseumObjectProvider @Inject constructor() {
+    var museumObjectList: List<Record> = emptyList()
 }

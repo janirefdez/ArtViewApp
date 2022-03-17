@@ -5,19 +5,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.janirefernandez.artviewapp.data.model.Record
 import com.janirefernandez.artviewapp.domain.GetMuseumObjectsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ArtViewModel : ViewModel() {
+@HiltViewModel
+class ArtViewModel @Inject constructor(
+    private val getMuseumObjectsUseCase: GetMuseumObjectsUseCase
+) : ViewModel() {
 
     val artModelList = MutableLiveData<MutableList<Record>>()
     val isLoading = MutableLiveData<Boolean>()
 
-    var getObjectUseCase = GetMuseumObjectsUseCase()
-
     fun onCreate() {
         viewModelScope.launch {
             isLoading.postValue(true)
-            val result = getObjectUseCase()
+            val result = getMuseumObjectsUseCase()
             if (!result.isNullOrEmpty()) {
                 artModelList.postValue(result.toMutableList())
                 isLoading.postValue(false)

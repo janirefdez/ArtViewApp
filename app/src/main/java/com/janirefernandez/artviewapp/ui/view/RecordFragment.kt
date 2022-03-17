@@ -8,8 +8,9 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.janirefernandez.artviewapp.databinding.FragmentRecordBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class RecordFragment : Fragment() {
 
     private lateinit var fragmentRecordBinding: FragmentRecordBinding
