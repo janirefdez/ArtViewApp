@@ -6,9 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.janirefernandez.artviewapp.R
 import com.janirefernandez.artviewapp.databinding.FragmentRecordBinding
+import com.janirefernandez.artviewapp.ui.kits.UINavigationBarKit
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class RecordFragment : Fragment() {
@@ -21,9 +25,12 @@ class RecordFragment : Fragment() {
     ): View {
 
         fragmentRecordBinding = FragmentRecordBinding.inflate(layoutInflater)
-
         loadWebView(requireArguments().getString("url")!!)
 
+        UINavigationBarKit.enableDisplayHomeAsUp(
+            (activity as AppCompatActivity).supportActionBar!!,
+            requireArguments().getString("title")!!
+        )
         return fragmentRecordBinding.root
     }
 
@@ -36,5 +43,13 @@ class RecordFragment : Fragment() {
             }
         }
         fragmentRecordBinding.webView.loadUrl(url)
+    }
+
+    override fun onDestroy() {
+        UINavigationBarKit.disableDisplayHomeAsUp(
+            (activity as AppCompatActivity).supportActionBar!!,
+            getString(R.string.title)
+        )
+        super.onDestroy()
     }
 }
