@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ArtViewApp</string>
     <string name="art_image">Art Image</string>
+    <string name="title">Harvard Art Museum</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.janirefernandez.artviewapp.ui.view
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -11,6 +12,7 @@ import com.janirefernandez.artviewapp.R
 import com.janirefernandez.artviewapp.data.model.Record
 import com.janirefernandez.artviewapp.databinding.ActivityMainBinding
 import com.janirefernandez.artviewapp.ui.adapter.RecordAdapter
+import com.janirefernandez.artviewapp.ui.kits.UINavigationBarKit
 import com.janirefernandez.artviewapp.ui.viewmodel.ArtViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -66,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         val mFragment = RecordFragment()
         val mBundle = Bundle()
         mBundle.putString("url", record.url)
+        mBundle.putString("title", record.objectNumber)
         mFragment.arguments = mBundle
 
         supportFragmentManager
@@ -73,6 +76,20 @@ class MainActivity : AppCompatActivity() {
             .add(R.id.content_frame, mFragment, "RECORD_FRAGMENT")
             .addToBackStack("back")
             .commit()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                UINavigationBarKit.disableDisplayHomeAsUp(
+                    supportActionBar!!,
+                    getString(R.string.title)
+                )
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+        return true
     }
 
     companion object {
