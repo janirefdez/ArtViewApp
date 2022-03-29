@@ -67,8 +67,8 @@ class MainActivity : AppCompatActivity() {
 
         val mFragment = RecordFragment()
         val mBundle = Bundle()
-        mBundle.putString("url", record.url)
-        mBundle.putString("title", record.objectNumber)
+        mBundle.putString(URL_BUNDLE, record.url)
+        mBundle.putString(TITLE_BUNDLE, record.objectNumber)
         mFragment.arguments = mBundle
 
         supportFragmentManager
@@ -94,5 +94,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val MAX_ITEMS = 100
+        const val URL_BUNDLE = "url"
+        const val TITLE_BUNDLE = "title"
     }
 }

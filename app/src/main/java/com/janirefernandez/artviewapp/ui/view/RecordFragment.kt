@@ -25,11 +25,11 @@ class RecordFragment : Fragment() {
     ): View {
 
         fragmentRecordBinding = FragmentRecordBinding.inflate(layoutInflater)
-        loadWebView(requireArguments().getString("url")!!)
+        loadWebView(requireArguments().getString(MainActivity.URL_BUNDLE)!!)
 
         UINavigationBarKit.enableDisplayHomeAsUp(
             (activity as AppCompatActivity).supportActionBar!!,
-            requireArguments().getString("title")!!
+            requireArguments().getString(MainActivity.TITLE_BUNDLE)!!
         )
         return fragmentRecordBinding.root
     }
