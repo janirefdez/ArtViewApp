@@ -23,7 +23,8 @@ class RecordAdapter(recordList: List<Record>, private val onClickListener: (Reco
     override fun getItemCount(): Int = records.size
 
     fun updateData(recordList: List<Record>) {
+        val sizeInitial = records.size
         records.addAll(recordList)
-        notifyItemRangeChanged(0, records.size)
+        notifyItemRangeChanged(sizeInitial, records.size)
     }
 }
