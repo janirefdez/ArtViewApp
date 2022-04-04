@@ -1,6 +1,7 @@
 # Art View App
-[![Kotlin](https://img.shields.io/badge/Kotlin--blue.svg)](https://kotlinlang.org/)
-[![Android](https://img.shields.io/badge/Android--blue.svg)](https://developer.android.com/)
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.6.10-blue.svg)](https://kotlinlang.org/)
+[![Android](https://img.shields.io/badge/Android->=24-blue.svg)](https://developer.android.com/)
+[![Gradle](https://img.shields.io/badge/Gradle-7.2-blue.svg)](https://docs.gradle.org/7.2/userguide/userguide.html)
 
 
 Art View app made in Kotlin. This app is a basic android example where you can find how to display list of items in a GridLayout.
